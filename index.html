@@ -47,17 +47,19 @@
         font-size: 1.8em;
         margin: 0;
         line-height: 0;
-        animation: glitch1 2.5s infinite;
+        animation: glitch1 2.5s 2;
       }
 
       h1:nth-child(2) {
         color: #8cff64;
-        animation: glitch2 2.5s infinite;
+        animation: glitch2 2.5s 2, hideElement 0s ease-in 5s;
+        animation-fill-mode: forwards;
       }
 
       h1:nth-child(3) {
         color: #d7ffc9;
-        animation: glitch3 2.5s infinite;
+        animation: glitch3 2.5s 2, hideElement 0s ease-in 5s;
+        animation-fill-mode: forwards;
       }
 
       /*Keyframes*/
@@ -262,6 +264,13 @@
           opacity: 0.25;
         }
       }
+    @keyframes hideElement {
+      to {
+          visibility: hidden;
+          width: 0;
+          height: 0;
+  }
+}
     </style>
   </head>
   <body>
