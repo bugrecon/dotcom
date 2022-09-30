@@ -34,7 +34,7 @@
       }
 
       .blink {
-        animation: blinker 1.2s linear infinite;
+        animation: blinker 1.2s linear 10;
       }
 
       @keyframes blinker {
@@ -43,33 +43,39 @@
         }
       }
 
-      h1 {
-        font-size: 1.8em;
+      .branding {
+        font-size: 32px;
+        line-height: 32px;
+        font-weight: bold;
+        letter-spacing: 0.25ch;
+      }
+
+      h1.branding {
         margin: 0;
         line-height: 0;
         animation: glitch1 2.5s 2, hideElement 0s ease-in 5s;
         animation-fill-mode: forwards;
       }
 
-      h1:nth-child(2) {
+      h1.branding:nth-child(2) {
         color: #8cff64;
         animation: glitch2 2.5s 2, hideElement 0s ease-in 5s;
         animation-fill-mode: forwards;
       }
 
-      h1:nth-child(3) {
+      h1.branding:nth-child(3) {
         color: #d7ffc9;
         animation: glitch3 2.5s 2, hideElement 0s ease-in 5s;
         animation-fill-mode: forwards;
       }
 
-      h1:nth-child(4) {
+      h1.branding:nth-child(4) {
         visibility: hidden;
         animation: showElement 0s ease-in 5s;
         animation-fill-mode: forwards;
       }
 
-      /* CSS Glitch source: https://codepen.io/FelixRilling/pen/vNJoMy MIT Licence */
+      /* Original CSS Glitch source: https://codepen.io/FelixRilling/pen/vNJoMy MIT Licence */
 
       @keyframes glitch1 {
         0% {
@@ -287,10 +293,10 @@
   </head>
   <body>
     <section>
-      <h1><span class="op50">BUG</span>R<span class="rh">E</span>CON<span class="blink">_</span></h1>
-      <h1>BUGRECON_</h1>
-      <h1>BUGRECON_</h1>
-      <h1><span class="op50">BUG</span>RECON<span class="blink">_</span></h1>
+      <h1 class="branding"><span class="op50">BUG</span>R<span class="rh">E</span>CON<span class="blink">_</span></h1>
+      <h1 class="branding">BUGRECON_</h1>
+      <h1 class="branding">BUGRECON_</h1>
+      <h1 class="branding"><span class="op50">BUG</span>RECON<span class="blink">_</span></h1>
     </section>
   </body>
 </html>
