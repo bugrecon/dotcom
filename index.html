@@ -1,302 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>BUGRECON</title>
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bug Recon</title>
     <style>
-      body {
-        background: #000000;
-        color: #41ff00;
-        font-family: "Lucida Console", "Courier New", monospace;
-      }
-
-      #wrapper {
-        text-align: center;
-        padding: 1em;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-right: -50%;
-        transform: translate(-50%, -50%);
-      }
-
-      .op50 {
-        opacity: 0.5;
-      }
-
-      .rh {
-        -webkit-transform: rotate(-180deg);
-        -moz-transform: rotate(-180deg);
-        -o-transform: rotate(-180deg);
-        transform: rotate(-180deg);
-        display: inline-block;
-        padding-top: 0.12em;
-      }
-
-      .blink {
-        animation: blinker 1.2s linear 10;
-      }
-
-      @keyframes blinker {
-        50% {
-          opacity: 0;
-        }
-      }
-
-      .branding {
-        font-size: 32px;
-        line-height: 32px;
-        font-weight: bold;
-        letter-spacing: 0.25ch;
-      }
-
-      h1.branding {
-        margin: 0;
-        line-height: 0;
-        animation: glitch1 2.5s 2, hideElement 0s ease-in 5s;
-        animation-fill-mode: forwards;
-      }
-
-      h1.branding:nth-child(2) {
-        color: #8cff64;
-        animation: glitch2 2.5s 2, hideElement 0s ease-in 5s;
-        animation-fill-mode: forwards;
-      }
-
-      h1.branding:nth-child(3) {
-        color: #d7ffc9;
-        animation: glitch3 2.5s 2, hideElement 0s ease-in 5s;
-        animation-fill-mode: forwards;
-      }
-
-      h1.branding:nth-child(4) {
-        visibility: hidden;
-        animation: showElement 0s ease-in 5s;
-        animation-fill-mode: forwards;
-      }
-
-      /* Original CSS Glitch source: https://codepen.io/FelixRilling/pen/vNJoMy MIT Licence */
-
-      @keyframes glitch1 {
-        0% {
-          transform: none;
-          opacity: 1;
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Courier New', monospace;
+            background-color: #000;
+            color: #0f0;
         }
 
-        7% {
-          transform: skew(-0.5deg, -0.9deg);
-          opacity: 0.75;
+        .terminal {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
         }
 
-        10% {
-          transform: none;
-          opacity: 1;
+        .terminal-content {
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: .15em solid #0f0;
+            animation: blink-caret .75s step-end infinite, glitch 150ms linear 1s 1;
         }
 
-        27% {
-          transform: none;
-          opacity: 1;
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 24ch; }
         }
 
-        30% {
-          transform: skew(0.8deg, -0.1deg);
-          opacity: 0.75;
+        @keyframes blink-caret {
+            50% { border-color: transparent; }
         }
 
-        35% {
-          transform: none;
-          opacity: 1;
+        @keyframes glitch {
+            0% { transform: translateY(0); }
+            20% { transform: translateY(-3px); opacity: 0.5;}
+            40% { transform: translateY(230px); }
+            60% { transform: translateY(-3px); opacity: 0.25;}
+            70% { transform: translateY(190px); }
+            80% { transform: translateY(3px); }
+            87% { transform: translateY(190px); opacity: 0.25;}
+            100% { transform: translateY(0); }
         }
-
-        52% {
-          transform: none;
-          opacity: 1;
-        }
-
-        55% {
-          transform: skew(-1deg, 0.2deg);
-          opacity: 0.75;
-        }
-
-        50% {
-          transform: none;
-          opacity: 1;
-        }
-
-        72% {
-          transform: none;
-          opacity: 1;
-        }
-
-        75% {
-          transform: skew(0.4deg, 1deg);
-          opacity: 0.75;
-        }
-
-        80% {
-          transform: none;
-          opacity: 1;
-        }
-
-        100% {
-          transform: none;
-          opacity: 1;
-        }
-      }
-
-      @keyframes glitch2 {
-        0% {
-          transform: none;
-          opacity: 0.25;
-        }
-
-        7% {
-          transform: translate(-2px, -3px);
-          opacity: 0.5;
-        }
-
-        10% {
-          transform: none;
-          opacity: 0.25;
-        }
-
-        27% {
-          transform: none;
-          opacity: 0.25;
-        }
-
-        30% {
-          transform: translate(-5px, -2px);
-          opacity: 0.5;
-        }
-
-        35% {
-          transform: none;
-          opacity: 0.25;
-        }
-
-        52% {
-          transform: none;
-          opacity: 0.25;
-        }
-
-        55% {
-          transform: translate(-5px, -1px);
-          opacity: 0.5;
-        }
-
-        50% {
-          transform: none;
-          opacity: 0.25;
-        }
-
-        72% {
-          transform: none;
-          opacity: 0.25;
-        }
-
-        75% {
-          transform: translate(-2px, -6px);
-          opacity: 0.5;
-        }
-
-        80% {
-          transform: none;
-          opacity: 0.25;
-        }
-
-        100% {
-          transform: none;
-          opacity: 0.25;
-        }
-      }
-
-      @keyframes glitch3 {
-        0% {
-          transform: none;
-          opacity: 0.25;
-        }
-
-        7% {
-          transform: translate(2px, 3px);
-          opacity: 0.5;
-        }
-
-        10% {
-          transform: none;
-          opacity: 0.25;
-        }
-
-        27% {
-          transform: none;
-          opacity: 0.25;
-        }
-
-        30% {
-          transform: translate(5px, 2px);
-          opacity: 0.5;
-        }
-
-        35% {
-          transform: none;
-          opacity: 0.25;
-        }
-
-        52% {
-          transform: none;
-          opacity: 0.25;
-        }
-
-        55% {
-          transform: translate(5px, 1px);
-          opacity: 0.5;
-        }
-
-        50% {
-          transform: none;
-          opacity: 0.25;
-        }
-
-        72% {
-          transform: none;
-          opacity: 0.25;
-        }
-
-        75% {
-          transform: translate(2px, 6px);
-          opacity: 0.5;
-        }
-
-        80% {
-          transform: none;
-          opacity: 0.25;
-        }
-
-        100% {
-          transform: none;
-          opacity: 0.25;
-        }
-      }
-    @keyframes hideElement {
-      to {
-          visibility: hidden;
-          width: 0;
-          height: 0;
-  }
-}
-    @keyframes showElement {
-      to {
-          visibility: visible;
-  }
-}
     </style>
-  </head>
-  <body>
-    <div id="wrapper">
-      <h1 class="branding"><span class="op50">BUG</span>R<span class="rh">E</span>CON<span class="blink">_</span></h1>
-      <h1 class="branding">BUGRECON_</h1>
-      <h1 class="branding">BUGRECON_</h1>
-      <h1 class="branding"><span class="op50">BUG</span>RECON<span class="blink">_</span></h1>
+</head>
+<body>
+    <div class="terminal">
+        <span class="terminal-content" id="terminal-text"></span>
     </div>
-  </body>
+    <script>
+        const terminalText = document.getElementById('terminal-text');
+        const message = "bugrecon.com";
+    
+        function typeWriter(text, i) {
+    if (i < text.length) {
+        terminalText.innerHTML += text.charAt(i);
+        terminalText.style.animation = 'blink-caret .75s step-end infinite, glitch 130ms linear 0s 30';
+        setTimeout(() => typeWriter(text, i + 1), 100);
+    // } else {
+    //     terminalText.style.animation = 'blink-caret .75s step-end infinite, glitch 130ms linear 0s 30';
+    }
+}
+    
+        // Create dynamic typewriter animation
+        const messageLength = message.length;
+        const dynamicTypewriter = `
+            @keyframes typewriter {
+                from { width: 0; }
+                to { width: ${messageLength}ch; }
+            }
+        `;
+    
+        // Add dynamic typewriter animation to the document
+        const style = document.createElement('style');
+        style.innerHTML = dynamicTypewriter;
+        document.head.appendChild(style);
+    
+        // Update animation property to use the dynamic typewriter animation
+        terminalText.style.animation = `typewriter ${messageLength * 100}ms steps(${messageLength}, end) 1s 1 normal both, blink-caret .75s step-end infinite 1s`;
+    
+        setTimeout(() => typeWriter(message, 0), 1000);
+    </script>
+</body>
 </html>
